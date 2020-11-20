@@ -1,0 +1,12 @@
+server:
+  port: ${PORT}
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+      - name: KeyIdAuthentication
+      - name: ServiceToServiceAuthentication

@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks: 
+  bubble:
+    external: true
+
+services:
+
+  fitmap.gateway:
+    container_name: fitmap.gateway
+    image: fitmap-gateway:0.0.1
+    networks:
+      - bubble
+    ports:
+      - "9051:8080"
+    env_file: .env
+    volumes:
+      - $HOME/gcp:$HOME/gcp
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp/google_application_credentials.json
+      - GOOGLE_CLOUD_PROJECT=$GOOGLE_CLOUD_PROJECT
