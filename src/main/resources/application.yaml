@@ -11,6 +11,7 @@ spring:
       - name: KeyIdAuthentication
       - name: ServiceToServiceAuthentication
       routes:
+
       - id: v1_set_roles
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
@@ -18,6 +19,7 @@ spring:
         - Method=POST
         filters:
         - RewritePath=/api/v1/set-roles, /v1-set-roles
+
       - id: v1_gym_crud_gym
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
