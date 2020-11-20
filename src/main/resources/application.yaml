@@ -10,3 +10,19 @@ spring:
       default-filters:
       - name: KeyIdAuthentication
       - name: ServiceToServiceAuthentication
+      routes:
+      - id: v1_set_roles
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/set-roles
+        - Method=POST
+        filters:
+        - RewritePath=/api/v1/set-roles, /v1-set-roles
+      - id: v1_gym_crud_gym
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym
+        - Method=GET,POST
+        filters:
+        - RewritePath=/api/v1/gym, /v1-gym-crud-gym
+        - RoleAuthorization=[ROLE_USER, ROLE_GYM], [ROLE_USER, ROLE_ADMIN]

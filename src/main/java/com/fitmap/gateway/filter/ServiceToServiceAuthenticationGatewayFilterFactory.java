@@ -1,6 +1,7 @@
 package com.fitmap.gateway.filter;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Collections;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -64,7 +65,10 @@ public class ServiceToServiceAuthenticationGatewayFilterFactory extends Abstract
 
     private String createServiceIdToken(ServerWebExchange exchange) throws IOException {
 
-        String serviceUrl = ((Route) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR)).getUri().toString();
+        var baseUri = ((Route) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR)).getUri().toString();
+        var path = ((URI) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR)).getPath();
+
+        String serviceUrl = baseUri + path;
         serviceUrl = serviceUrl.replace(":443", "");
 
         String token = ((IdTokenProvider) googleCredentials).idTokenWithAudience(serviceUrl, Collections.emptyList()).getTokenValue();
