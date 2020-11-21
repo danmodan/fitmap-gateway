@@ -34,7 +34,7 @@ public class RoleAuthorizationGatewayFilterFactory extends AbstractGatewayFilter
 
                     var request = exchange.getRequest();
 
-                    checkRequestAuthorization(request.getHeaders().getOrEmpty("USER_ROLES"), config.getRolesGroups());
+                    checkRequestAuthorization(request.getHeaders().getOrEmpty("User_roles"), config.getRolesGroups());
     
                     return chain.filter(exchange);
     

@@ -61,8 +61,8 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
     
                     var reqBuilder = request.mutate();
     
-                    reqBuilder.header("USER_ID", userId);
-                    reqBuilder.header("USER_ROLES", userRoles);
+                    reqBuilder.header("User_id", userId);
+                    reqBuilder.header("User_roles", userRoles);
     
                     return chain.filter(exchange.mutate().request(reqBuilder.build()).build());
     
