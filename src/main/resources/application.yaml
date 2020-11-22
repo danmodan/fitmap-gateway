@@ -20,6 +20,8 @@ spring:
         filters:
         - RewritePath=/api/v1/set-roles, /v1-set-roles
 
+### gym ###
+
       - id: v1_gym_crud_gym
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
@@ -38,6 +40,17 @@ spring:
         - Method=GET,POST,PUT,DELETE
         filters:
         - RewritePath=/api/v1/gym/contacts, /v1-gym-crud-contacts
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_GYM, ROLE_ADMIN
+
+      - id: v1_gym_crud_addresses
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym/addresses
+        - Method=GET,POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v1/gym/addresses, /v1-gym-crud-addresses
         - name: RoleAuthorization
           args:
             roles: ROLE_GYM, ROLE_ADMIN
