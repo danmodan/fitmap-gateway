@@ -26,7 +26,7 @@ spring:
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
         - Path=/api/v1/gym
-        - Method=GET,POST
+        - Method=GET,POST,PUT,DELETE
         filters:
         - RewritePath=/api/v1/gym, /v1-gym-crud-gym
         - name: RoleAuthorization
