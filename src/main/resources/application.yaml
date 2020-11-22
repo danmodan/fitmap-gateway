@@ -27,4 +27,17 @@ spring:
         - Method=GET,POST
         filters:
         - RewritePath=/api/v1/gym, /v1-gym-crud-gym
-        - RoleAuthorization=[ROLE_USER, ROLE_GYM], [ROLE_USER, ROLE_ADMIN]
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_GYM, ROLE_ADMIN
+
+      - id: v1_gym_crud_contacts
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym/contacts
+        - Method=GET,POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v1/gym/contacts, /v1-gym-crud-contacts
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_GYM, ROLE_ADMIN

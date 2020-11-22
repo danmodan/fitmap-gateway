@@ -34,7 +34,7 @@ public class RoleAuthorizationGatewayFilterFactory extends AbstractGatewayFilter
 
                     var request = exchange.getRequest();
 
-                    checkRequestAuthorization(request.getHeaders().getOrEmpty("User_roles"), config.getRolesGroups());
+                    checkRequestAuthorization(request.getHeaders().getOrEmpty("User_roles"), config.getRoles());
     
                     return chain.filter(exchange);
     
@@ -52,16 +52,16 @@ public class RoleAuthorizationGatewayFilterFactory extends AbstractGatewayFilter
             }, FILTER_ORDER);
     }
 
-    private void checkRequestAuthorization(Collection<String> currentRoles, Collection<Set<String>> mandatoryRolesGroups) {
+    private void checkRequestAuthorization(Collection<String> currentRoles, Collection<String> roles) {
 
-        if(CollectionUtils.isEmpty(mandatoryRolesGroups)) {
+        if(CollectionUtils.isEmpty(roles)) {
 
             return;
         }
 
-        for (var group : mandatoryRolesGroups) {
+        for (var role : roles) {
 
-            if(group.containsAll(currentRoles)) {
+            if(currentRoles.contains(role)) {
                 return;
             }
         }
@@ -73,11 +73,11 @@ public class RoleAuthorizationGatewayFilterFactory extends AbstractGatewayFilter
     @Setter
     public static class Config {
 
-        private Set<Set<String>> rolesGroups;
+        private Collection<String> roles;
 
         @Override
         public String toString() {
-            return new ToStringCreator(this).append("roles-groups", rolesGroups).toString();
+            return new ToStringCreator(this).append("mandatory-roles", roles).toString();
         }
     }
 
