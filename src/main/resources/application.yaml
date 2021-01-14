@@ -57,6 +57,28 @@ spring:
           args:
             roles: ROLE_GYM, ROLE_ADMIN
 
+      - id: v1_gym_cud_events
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym/events
+        - Method=POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v1/gym/events, /v1-gym-crud-events
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_GYM, ROLE_ADMIN
+
+      - id: v1_gym_cud_subscription_plans
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym/subscription-plans
+        - Method=POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v1/gym/subscription-plans, /v1-gym-crud-subscription-plans
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_GYM, ROLE_ADMIN
+
       - id: v1_gym_read_gym
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
@@ -86,6 +108,28 @@ spring:
         - Method=GET
         filters:
         - RewritePath=/api/v1/gym/addresses, /v1-gym-crud-addresses
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_USER
+
+      - id: v1_gym_read_events
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym/events
+        - Method=GET
+        filters:
+        - RewritePath=/api/v1/gym/events, /v1-gym-crud-events
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_USER
+
+      - id: v1_gym_read_subscription_plans
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/gym/subscription-plans
+        - Method=GET
+        filters:
+        - RewritePath=/api/v1/gym/subscription-plans, /v1-gym-crud-subscription-plans
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -125,6 +169,28 @@ spring:
           args:
             roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
 
+      - id: v1_personal_trainer_cud_events
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/personal-trainer/events
+        - Method=POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v1/personal-trainer/events, /v1-personal-trainer-crud-events
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
+
+      - id: v1_personal_trainer_cud_subscription_plans
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/personal-trainer/subscription-plans
+        - Method=POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v1/personal-trainer/subscription-plans, /v1-personal-trainer-crud-subscription-plans
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
+
       - id: v1_personal_trainer_read_personal-trainer
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
@@ -157,6 +223,28 @@ spring:
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
+
+      - id: v1_personal_trainer_read_events
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/personal-trainer/events
+        - Method=GET
+        filters:
+        - RewritePath=/api/v1/personal-trainer/events, /v1-personal-trainer-crud-events
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
+
+      - id: v1_personal_trainer_read_subscription_plans
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v1/personal-trainer/subscription-plans
+        - Method=GET
+        filters:
+        - RewritePath=/api/v1/personal-trainer/subscription-plans, /v1-personal-trainer-crud-subscription-plans
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
 
 ### student ###
 
