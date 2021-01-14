@@ -1,6 +1,6 @@
 package com.fitmap.gateway.payload.response;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,7 +26,7 @@ import lombok.ToString;
 @JsonNaming(value = SnakeCaseStrategy.class)
 public class ErrorResponse {
 
-    private ZonedDateTime timestamp;
+    private Date timestamp;
     private int status;
     private String statusError;
     private Set<Map<String, Object>> errors;

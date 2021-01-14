@@ -1,8 +1,8 @@
 package com.fitmap.gateway.filter;
 
 import java.nio.charset.StandardCharsets;
-import java.time.ZonedDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -89,7 +89,7 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
 
                         var body = ErrorResponse
                             .builder()
-                            .timestamp(ZonedDateTime.now())
+                            .timestamp(new Date())
                             .status(responseStatus.value())
                             .statusError(responseStatus.getReasonPhrase())
                             .message(e.getMessage())

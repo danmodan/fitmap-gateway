@@ -3,8 +3,8 @@ package com.fitmap.gateway.filter;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.time.ZonedDateTime;
 import java.util.Collections;
+import java.util.Date;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fitmap.gateway.payload.response.ErrorResponse;
@@ -72,7 +72,7 @@ public class ServiceToServiceAuthenticationGatewayFilterFactory extends Abstract
 
                     var body = ErrorResponse
                         .builder()
-                        .timestamp(ZonedDateTime.now())
+                        .timestamp(new Date())
                         .status(responseStatus.value())
                         .statusError(responseStatus.getReasonPhrase())
                         .message(e.getMessage())
