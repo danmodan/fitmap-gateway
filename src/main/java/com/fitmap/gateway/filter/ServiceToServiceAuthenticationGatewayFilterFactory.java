@@ -101,6 +101,10 @@ public class ServiceToServiceAuthenticationGatewayFilterFactory extends Abstract
         var baseUri = ((Route) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR)).getUri().toString();
         var path = ((URI) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR)).getPath();
 
+        if(path != null && path.contains("/function-v2")) {
+            path = "/function-v2";
+        }
+
         String serviceUrl = baseUri + path;
         serviceUrl = serviceUrl.replace(":443", "");
 
