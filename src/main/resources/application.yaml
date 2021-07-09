@@ -230,6 +230,30 @@ spring:
             args:
               roles: ROLE_USER
 
+### fights ###
+
+      - id: v2_fights_cud
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+          - Path=/api/v2/fights
+          - Method=POST,PUT,DELETE
+        filters:
+          - RewritePath=/api/v2/fights, /function-v2/api/v2/fights
+          - name: RoleAuthorization
+            args:
+              roles: ROLE_ADMIN
+
+      - id: v2_fights_r
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+          - Path=/api/v2/fights
+          - Method=GET
+        filters:
+          - RewritePath=/api/v2/fights, /function-v2/api/v2/fights
+          - name: RoleAuthorization
+            args:
+              roles: ROLE_USER
+
 ### locations ###
 
       - id: v2_locations
