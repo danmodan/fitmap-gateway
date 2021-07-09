@@ -232,24 +232,24 @@ spring:
 
 ### fights ###
 
-      - id: v2_fights_cud
+      - id: v2_fight_cud
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
-          - Path=/api/v2/fights
+          - Path=/api/v2/fight
           - Method=POST,PUT,DELETE
         filters:
-          - RewritePath=/api/v2/fights, /function-v2/api/v2/fights
+          - RewritePath=/api/v2/fight, /function-v2/api/v2/fight
           - name: RoleAuthorization
             args:
               roles: ROLE_ADMIN
 
-      - id: v2_fights_r
+      - id: v2_fight_r
         uri: ${FITMAP_FUNCTION_URI}
         predicates:
-          - Path=/api/v2/fights
+          - Path=/api/v2/fight
           - Method=GET
         filters:
-          - RewritePath=/api/v2/fights, /function-v2/api/v2/fights
+          - RewritePath=/api/v2/fight, /function-v2/api/v2/fight
           - name: RoleAuthorization
             args:
               roles: ROLE_USER
