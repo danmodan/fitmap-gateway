@@ -101,9 +101,7 @@ public class ServiceToServiceAuthenticationGatewayFilterFactory extends Abstract
         var baseUri = ((Route) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ROUTE_ATTR)).getUri().toString();
         var path = ((URI) exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_REQUEST_URL_ATTR)).getPath();
 
-        if(path != null && path.contains("/function-v2")) {
-            path = "/function-v2";
-        }
+        path = getPath(path);
 
         String serviceUrl = baseUri + path;
         serviceUrl = serviceUrl.replace(":443", "");
@@ -111,6 +109,15 @@ public class ServiceToServiceAuthenticationGatewayFilterFactory extends Abstract
         String token = ((IdTokenProvider) googleCredentials).idTokenWithAudience(serviceUrl, Collections.emptyList()).getTokenValue();
 
         return "Bearer " + token;
+    }
+
+    private String getPath(String path) {
+
+        if(path.startsWith("/api/v")) {
+            return "/";
+        }
+
+        return "/" + path.split("/")[1];
     }
 
     public static class Config { /** */ }

@@ -22,7 +22,7 @@ spring:
         - Path=/api/v2/set-roles
         - Method=POST
         filters:
-        - RewritePath=/api/v2/set-roles, /set-roles-func-v2/api/v2/set-roles
+        - RewritePath=/api/v2/set-roles, /api/v2/set-roles
 
 ### gym ###
 
@@ -32,7 +32,7 @@ spring:
         - Path=/api/v2/gym
         - Method=POST,PUT
         filters:
-        - RewritePath=/api/v2/gym, /gym-func-v2/api/v2/gym
+        - RewritePath=/api/v2/gym, /api/v2/gym
         - name: RoleAuthorization
           args:
             roles: ROLE_GYM, ROLE_ADMIN
@@ -43,7 +43,7 @@ spring:
         - Path=/api/v2/gym/events
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/gym/events, /event-func-v2/api/v2/gym/events
+        - RewritePath=/api/v2/gym/events, /api/v2/gym/events
         - name: RoleAuthorization
           args:
             roles: ROLE_GYM, ROLE_ADMIN
@@ -54,7 +54,7 @@ spring:
         - Path=/api/v2/gym/subscription-plans
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/gym/subscription-plans, /subscription-plan-func-v2/api/v2/gym/subscription-plans
+        - RewritePath=/api/v2/gym/subscription-plans, /api/v2/gym/subscription-plans
         - name: RoleAuthorization
           args:
             roles: ROLE_GYM, ROLE_ADMIN
@@ -65,7 +65,7 @@ spring:
         - Path=/api/v2/gym
         - Method=GET
         filters:
-        - RewritePath=/api/v2/gym, /gym-func-v2/api/v2/gym
+        - RewritePath=/api/v2/gym, /api/v2/gym
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -76,7 +76,7 @@ spring:
         - Path=/api/v2/gym/events
         - Method=GET
         filters:
-        - RewritePath=/api/v2/gym/events, /event-func-v2/api/v2/gym/events
+        - RewritePath=/api/v2/gym/events, /api/v2/gym/events
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -87,7 +87,7 @@ spring:
         - Path=/api/v2/gym/subscription-plans
         - Method=GET
         filters:
-        - RewritePath=/api/v2/gym/subscription-plans, /subscription-plan-func-v2/api/v2/gym/subscription-plans
+        - RewritePath=/api/v2/gym/subscription-plans, /api/v2/gym/subscription-plans
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -100,7 +100,7 @@ spring:
         - Path=/api/v2/personal-trainer
         - Method=POST,PUT
         filters:
-        - RewritePath=/api/v2/personal-trainer, /personal-trainer-func-v2/api/v2/personal-trainer
+        - RewritePath=/api/v2/personal-trainer, /api/v2/personal-trainer
         - name: RoleAuthorization
           args:
             roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
@@ -111,7 +111,7 @@ spring:
         - Path=/api/v2/personal-trainer/events
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/personal-trainer/events, /event-func-v2/api/v2/personal-trainer/events
+        - RewritePath=/api/v2/personal-trainer/events, /api/v2/personal-trainer/events
         - name: RoleAuthorization
           args:
             roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
@@ -122,7 +122,7 @@ spring:
         - Path=/api/v2/personal-trainer/subscription-plans
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/personal-trainer/subscription-plans, /subscription-plan-func-v2/api/v2/personal-trainer/subscription-plans
+        - RewritePath=/api/v2/personal-trainer/subscription-plans, /api/v2/personal-trainer/subscription-plans
         - name: RoleAuthorization
           args:
             roles: ROLE_PERSONAL_TRAINER, ROLE_ADMIN
@@ -133,7 +133,7 @@ spring:
         - Path=/api/v2/personal-trainer
         - Method=GET
         filters:
-        - RewritePath=/api/v2/personal-trainer, /personal-trainer-func-v2/api/v2/personal-trainer
+        - RewritePath=/api/v2/personal-trainer, /api/v2/personal-trainer
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -144,7 +144,7 @@ spring:
         - Path=/api/v2/personal-trainer/events
         - Method=GET
         filters:
-        - RewritePath=/api/v2/personal-trainer/events, /event-func-v2/api/v2/personal-trainer/events
+        - RewritePath=/api/v2/personal-trainer/events, /api/v2/personal-trainer/events
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -155,7 +155,7 @@ spring:
         - Path=/api/v2/personal-trainer/subscription-plans
         - Method=GET
         filters:
-        - RewritePath=/api/v2/personal-trainer/subscription-plans, /subscription-plan-func-v2/api/v2/personal-trainer/subscription-plans
+        - RewritePath=/api/v2/personal-trainer/subscription-plans, /api/v2/personal-trainer/subscription-plans
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -168,7 +168,7 @@ spring:
         - Path=/api/v2/student
         - Method=POST,PUT
         filters:
-        - RewritePath=/api/v2/student, /student-func-v2/api/v2/student
+        - RewritePath=/api/v2/student, /api/v2/student
         - name: RoleAuthorization
           args:
             roles: ROLE_STUDENT, ROLE_ADMIN
@@ -179,7 +179,7 @@ spring:
         - Path=/api/v2/student
         - Method=GET
         filters:
-        - RewritePath=/api/v2/student, /student-func-v2/api/v2/student
+        - RewritePath=/api/v2/student, /api/v2/student
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -192,7 +192,7 @@ spring:
         - Path=/api/v2/sport
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/sport, /sport-func-v2/api/v2/sport
+        - RewritePath=/api/v2/sport, /api/v2/sport
         - name: RoleAuthorization
           args:
             roles: ROLE_ADMIN
@@ -203,7 +203,31 @@ spring:
         - Path=/api/v2/sport
         - Method=GET
         filters:
-        - RewritePath=/api/v2/sport, /sport-func-v2/api/v2/sport
+        - RewritePath=/api/v2/sport, /api/v2/sport
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_USER
+
+### gym-sport ###
+
+      - id: v2_gym_sport_cud
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v2/gym-sport
+        - Method=POST,PUT,DELETE
+        filters:
+        - RewritePath=/api/v2/gym-sport, /api/v2/gym-sport
+        - name: RoleAuthorization
+          args:
+            roles: ROLE_ADMIN
+
+      - id: v2_gym_sport_r
+        uri: ${FITMAP_FUNCTION_URI}
+        predicates:
+        - Path=/api/v2/gym-sport
+        - Method=GET
+        filters:
+        - RewritePath=/api/v2/gym-sport, /api/v2/gym-sport
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -216,7 +240,7 @@ spring:
         - Path=/api/v2/focus
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/focus, /focus-func-v2/api/v2/focus
+        - RewritePath=/api/v2/focus, /api/v2/focus
         - name: RoleAuthorization
           args:
             roles: ROLE_ADMIN
@@ -227,7 +251,7 @@ spring:
         - Path=/api/v2/focus
         - Method=GET
         filters:
-        - RewritePath=/api/v2/focus, /focus-func-v2/api/v2/focus
+        - RewritePath=/api/v2/focus, /api/v2/focus
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -240,7 +264,7 @@ spring:
         - Path=/api/v2/fight
         - Method=POST,PUT,DELETE
         filters:
-        - RewritePath=/api/v2/fight, /fight-func-v2/api/v2/fight
+        - RewritePath=/api/v2/fight, /api/v2/fight
         - name: RoleAuthorization
           args:
             roles: ROLE_ADMIN
@@ -251,7 +275,7 @@ spring:
         - Path=/api/v2/fight
         - Method=GET
         filters:
-        - RewritePath=/api/v2/fight, /fight-func-v2/api/v2/fight
+        - RewritePath=/api/v2/fight, /api/v2/fight
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -264,7 +288,7 @@ spring:
         - Path=/api/v2/locations
         - Method=GET
         filters:
-        - RewritePath=/api/v2/locations, /locations-func-v2/api/v2/locations
+        - RewritePath=/api/v2/locations, /api/v2/locations
         - name: RoleAuthorization
           args:
             roles: ROLE_USER
@@ -277,7 +301,7 @@ spring:
         - Path=/api/v2/send-sign-up-verify-email
         - Method=POST
         filters:
-        - RewritePath=/api/v2/send-sign-up-verify-email, /send-account-management-email-func-v2/api/v2/send-sign-up-verify-email
+        - RewritePath=/api/v2/send-sign-up-verify-email, /api/v2/send-sign-up-verify-email
 
       - id: v2_send_reset_password_email
         uri: ${FITMAP_FUNCTION_URI}
@@ -285,4 +309,4 @@ spring:
         - Path=/api/v2/send-reset-password-email
         - Method=POST
         filters:
-        - RewritePath=/api/v2/send-reset-password-email, /send-account-management-email-func-v2/api/v2/send-reset-password-email
+        - RewritePath=/api/v2/send-reset-password-email, /api/v2/send-reset-password-email

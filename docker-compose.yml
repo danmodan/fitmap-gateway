@@ -8,14 +8,16 @@ services:
 
   fitmap.gateway:
     container_name: fitmap.gateway
-    image: fitmap-gateway:0.0.1
+    image: gcr.io/fitmap-5cd36/fitmap-gateway
     networks:
       - bubble
     ports:
       - "9051:8080"
-    env_file: .env
     volumes:
       - $HOME/gcp:$HOME/gcp
     environment:
       - GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp/google_application_credentials.json
       - GOOGLE_CLOUD_PROJECT=$GOOGLE_CLOUD_PROJECT
+      - PORT=8080
+      - FITMAP_FUNCTION_URI=http://fitmap.function-v2:8080
+      - SPRING_PROFILES_ACTIVE=local

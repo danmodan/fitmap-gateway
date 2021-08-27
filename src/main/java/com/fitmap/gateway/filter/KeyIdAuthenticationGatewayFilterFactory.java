@@ -10,8 +10,6 @@ import java.util.Set;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fitmap.gateway.payload.response.ErrorResponse;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseToken;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -59,7 +57,9 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
 
                 try {
 
-                    var decodedToken = authenticateRequest(request);
+                    var idToken = getIdToken(request);
+
+                    var decodedToken = firebaseAuth.verifyIdToken(idToken);
 
                     var claims = decodedToken.getClaims();
                     List<String> roles = Objects.requireNonNullElse((List<String>) claims.get("roles"), Collections.emptyList());
@@ -71,6 +71,7 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
 
                     reqBuilder.header("User_id", userId);
                     reqBuilder.header("User_roles", userRoles);
+                    reqBuilder.header("User_id_token", idToken);
 
                     return chain.filter(exchange.mutate().request(reqBuilder.build()).build());
 
@@ -112,7 +113,7 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
             }, FILTER_ORDER);
     }
 
-    private FirebaseToken authenticateRequest(ServerHttpRequest request) throws FirebaseAuthException {
+    private String getIdToken(ServerHttpRequest request) {
 
         var headers = request.getHeaders();
 
@@ -122,9 +123,7 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
             throw new  RuntimeException("without auth header");
         }
 
-        var idToken = authHeader.replace("Bearer ", "");
-
-        return firebaseAuth.verifyIdToken(idToken);
+        return authHeader.replace("Bearer ", "");
     }
 
     private boolean isAnonymousUrl(ServerHttpRequest request, Config config) {
@@ -135,7 +134,10 @@ public class KeyIdAuthenticationGatewayFilterFactory extends AbstractGatewayFilt
             return false;
         }
 
-        return config.getAnonymousUrlPatterns().stream().anyMatch(path::matches);
+        return config
+            .getAnonymousUrlPatterns()
+            .stream()
+            .anyMatch(path::matches);
     }
 
     @Getter
