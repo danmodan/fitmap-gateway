@@ -12,6 +12,10 @@ spring:
         args:
           anonymous-url-patterns: /api/v2/send-reset-password-email
       - name: ServiceToServiceAuthentication
+      - name: Retry
+        args:
+          retries: 20
+          statuses: INTERNAL_SERVER_ERROR
       routes:
 
 ### auth ###
