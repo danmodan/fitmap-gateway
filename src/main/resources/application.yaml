@@ -10,7 +10,7 @@ spring:
       default-filters:
       - name: KeyIdAuthentication
         args:
-          anonymous-url-patterns: /api/v2/send-reset-password-email
+          anonymous-url-patterns: /send-account-management-email-func-v2/api/v2/send-reset-password-email
       - name: ServiceToServiceAuthentication
       - name: Retry
         args:
